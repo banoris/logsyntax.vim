@@ -42,6 +42,7 @@ syntax match iisw3c_request / \/.\{-} /
 highlight link iisw3c_request PreProc
 
 " General/application log files
+syntax match applogging_level_warning ":"
 syntax keyword applogging_level_debug DEBUG
 syntax keyword applogging_level_info INFO
 syntax keyword applogging_level_warning WARN WARNING
