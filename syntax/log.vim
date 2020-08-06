@@ -19,14 +19,17 @@ highlight link iis_hour Function
 syntax keyword verbs GET POST HEAD PUT DELETE TRACE OPTIONS CONNECT PATCH contained
 highlight link verbs Statement
 
-syntax region request start=/"/ end=/"/ contains=verbs
+" Handle escapequote (\") properly
+" https://learnvimscriptthehardway.stevelosh.com/chapters/47.html#highlighting-strings
+"syntax region request start=/"/ end=/"/ contains=verbs
+syntax region request start=/\v"/ skip=/\v\\./ end=/\v"/
 highlight link request Type
 
-syntax match bracketdate /\d\{2}\/\a\{3}\/\d\{4}:\d\{2}:\d\{2}:\d\{2} [+-]\d\{4}/  
+syntax match bracketdate /\d\{2}\/\a\{3}\/\d\{4}:\d\{2}:\d\{2}:\d\{2} [+-]\d\{4}/
 highlight link bracketdate Function
 
 " IISW3C log
-syntax keyword iisw3c_verbs GET POST HEAD PUT DELETE TRACE OPTIONS CONNECT PATCH 
+syntax keyword iisw3c_verbs GET POST HEAD PUT DELETE TRACE OPTIONS CONNECT PATCH
 highlight link iisw3c_verbs Statement
 
 syntax match iisw3c_comment /#.*/
@@ -43,6 +46,9 @@ highlight link iisw3c_request PreProc
 
 " General/application log files
 syntax match applogging_level_warning ":"
+syntax match applogging_level_warning "="
+" your signature for printf debugging
+syntax match applogging_level_error "ASD:"
 syntax keyword applogging_level_debug DEBUG
 syntax keyword applogging_level_info INFO
 syntax keyword applogging_level_warning WARN WARNING
