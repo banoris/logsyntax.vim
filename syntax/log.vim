@@ -22,8 +22,10 @@ highlight link verbs Statement
 " Handle escapequote (\") properly
 " https://learnvimscriptthehardway.stevelosh.com/chapters/47.html#highlighting-strings
 "syntax region request start=/"/ end=/"/ contains=verbs
-syntax region request start=/\v"/ skip=/\v\\./ end=/\v"/
-highlight link request Type
+syntax region doublequote start=/\v"/ skip=/\v\\./ end=/\v"/
+highlight link doublequote Type
+syntax region singlequote start=/\v'/ skip=/\v\\./ end=/\v'/
+highlight link singlequote String
 
 syntax match bracketdate /\d\{2}\/\a\{3}\/\d\{4}:\d\{2}:\d\{2}:\d\{2} [+-]\d\{4}/
 highlight link bracketdate Function
